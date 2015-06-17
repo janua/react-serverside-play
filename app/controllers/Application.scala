@@ -2,7 +2,9 @@ package controllers
 
 import java.io.FileReader
 import javax.script.ScriptEngineManager
+import play.api.libs.json.Json
 import play.api.mvc._
+import service.{Post, Blog}
 
 object Application extends Controller {
 
@@ -16,7 +18,7 @@ object Application extends Controller {
         // to Nashorn's context to give React a place to define its global namespace.
         engine.eval("var backendState = this;")
         engine.eval("backendState.title = 'Hello';")
-        engine.eval("backendState.posts = [{title:'My first backend post'}];")
+        engine.eval(s"backendState.posts = ${Json.stringify(Json.toJson(Blog.allPosts))};")
 
         //val posts = new SimpleBindings()
         //posts.put("posts", "[{title: 'From engine put'}]")
@@ -32,5 +34,24 @@ object Application extends Controller {
         })
     }
   }
+
+  def getAllPosts = Action {
+    Ok(Json.toJson(Blog.allPosts)).as("application/json")
+  }
+
+  def addPost = Action { request =>
+    (request.body.asFormUrlEncoded, request.body.asJson.flatMap(_.asOpt[Post])) match {
+      case (_, Some(post)) => Ok(Json.toJson(Blog.addPost(post))).as("application/json")
+      case (Some(formData), _) =>
+        formData.mapValues(_.mkString).get("title").map(Post.apply).map(Blog.addPost).map(_ => Redirect("/")).getOrElse(NotAcceptable)
+      case _ => NotAcceptable
+    }
+  }
+
+  def deletePost = Action { request =>
+    request.body.asJson.flatMap(_.asOpt[Post]) match {
+      case Some(post) => Ok(Json.toJson(Blog.deletePost(post))).as("application/json")
+      case None => NotAcceptable
+    }  }
 }
 

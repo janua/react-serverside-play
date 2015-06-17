@@ -1,4 +1,8 @@
 
-GET  /webjars/*file       controllers.WebJarAssets.at(file)
-GET  /assets/*file        controllers.Assets.at(path="/public", file)
-GET  /                    controllers.Application.index
+GET        /webjars/*file        controllers.WebJarAssets.at(file)
+GET        /assets/*file         controllers.Assets.at(path="/public", file)
+GET        /                     controllers.Application.index
+
+GET        /allposts             controllers.Application.getAllPosts
+POST       /addpost              controllers.Application.addPost
+DELETE     /deletepost           controllers.Application.deletePost

@@ -1,5 +1,8 @@
 @(content: Html)
 
+@import play.api.libs.json.Json
+@import service.Blog
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -10,10 +13,7 @@
     <script type="application/javascript">
         var backendState = {};
         backendState.title = "Hello";
-        backendState.posts = [
-            {title:'My first backend post'},
-            {title:'New stuff!!'}
-        ];
+        backendState.posts = @Html(Json.stringify(Json.toJson(Blog.allPosts)));
     </script>
 </head>
     <body>
