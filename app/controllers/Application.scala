@@ -17,7 +17,7 @@ object Application extends Controller {
         // React expects `window` or `global` to exist. Create a `global` pointing
         // to Nashorn's context to give React a place to define its global namespace.
         engine.eval("var backendState = this;")
-        engine.eval("backendState.title = 'Hello';")
+        engine.eval("backendState.title = 'List of posts';")
         engine.eval(s"backendState.posts = ${Json.stringify(Json.toJson(Blog.allPosts))};")
 
         //val posts = new SimpleBindings()
