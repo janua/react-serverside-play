@@ -10,7 +10,8 @@ var BlogPost = React.createClass({
           <li>
             <h2>{this.props.title}</h2>
             <div>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <p>Lorem ipsum dolor sit amet, natum augue simul usu et. Prima tincidunt sed ea. Vel albucius explicari voluptatum ut. Qui vocibus eligendi honestatis cu, cu enim novum est.</p>
+                <p>Sit ut discere repudiare. Sed at aliquip accommodare, ei sit nonumy qualisque. Vis ei sint nemore dissentiet. Ex eos case aperiam, cetero vocent posidonium ad cum. Has id populo elaboraret, detracto indoctum philosophia ad cum.</p>
             </div>
           </li>
     );
@@ -23,9 +24,11 @@ var BlogEditor = React.createClass({
             input: ''
         });
     },
+
     onUpdate: function(event) {
         this.setState({input: event.target.value});
     },
+
     onClick: function(event) {
         event.preventDefault();
         var self = this;
@@ -57,6 +60,7 @@ var Blog = React.createClass({
       posts: backendState.posts || []
     });
   },
+
   componentDidMount: function() {
       var self = this;
       fetch('/allposts', {
@@ -68,9 +72,11 @@ var Blog = React.createClass({
               self.setState(newState);
           });
   },
+
   refreshPosts: function(posts) {
     this.setState({posts: posts});
   },
+
   render: function() {
     var postsHtml = _.map(this.state.posts, function(post) {
       return (<BlogPost title={post.title}/>);
