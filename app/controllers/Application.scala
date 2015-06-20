@@ -38,14 +38,11 @@ object Application extends Controller {
       case (_, Some(post)) => Ok(Json.toJson(Blog.addPost(post))).as("application/json")
       case (Some(formData), _) =>
         formData.mapValues(_.mkString).get("title").map(Post.apply).map(Blog.addPost).map(_ => Redirect("/")).getOrElse(NotAcceptable)
-      case _ => NotAcceptable
-    }
-  }
+      case _ => NotAcceptable}}
 
   def deletePost = Action { request =>
     request.body.asJson.flatMap(_.asOpt[Post]) match {
       case Some(post) => Ok(Json.toJson(Blog.deletePost(post))).as("application/json")
-      case None => NotAcceptable
-    }  }
+      case None => NotAcceptable}}
 }
 
