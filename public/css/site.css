@@ -40,3 +40,12 @@ li {
     margin-left: 0.5em;
     padding: 0.5em;
 }
+
+.enterTitle {
+    display: inline;
+    margin: 0 1em 0 0;
+}
+
+.entryForm {
+    display: inline;
+}
