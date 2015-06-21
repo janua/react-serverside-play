@@ -8,7 +8,7 @@ import service.{Post, Blog}
 
 object Application extends Controller {
 
-  val maybeEngine = Option(new ScriptEngineManager(null).getEngineByName("nashorn"))
+  def maybeEngine = Option(new ScriptEngineManager(null).getEngineByName("nashorn"))
 
   def index = Action {
     maybeEngine match {
