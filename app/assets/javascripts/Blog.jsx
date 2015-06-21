@@ -1,4 +1,3 @@
-import React from 'react';
 
 var BlogPost = React.createClass({
   render: function() {
