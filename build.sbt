@@ -1,4 +1,4 @@
-name := "react-serverside-play
+name := "react-serverside-play"
 
 version := "0.1"
 
