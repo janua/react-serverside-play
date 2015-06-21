@@ -2,7 +2,7 @@ name := "react-serverside-play"
 
 version := "0.1"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.5"
 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
