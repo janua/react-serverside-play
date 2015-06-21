@@ -39,9 +39,10 @@ var BlogEditor = React.createClass({
     render: function() {
         return (
             <div>
-                <form action="addpost" method="post">
+                <p className="enterTitle">Enter Post Title:</p>
+                <form className="entryForm" action="addpost" method="post">
                     <input name="title" id="title" type="field" onChange={this.onUpdate.bind(this)}></input>
-                    <button onClick={this.onClick.bind(this)}>Send</button>
+                    <button onClick={this.onClick.bind(this)}>Post</button>
                 </form>
             </div>
         );
