@@ -1,9 +1,3 @@
-console = {
-  log: print,
-  warn: print,
-  error: print
-};
-
 var BlogPost = React.createClass({
   render: function() {
     return (

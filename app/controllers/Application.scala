@@ -15,6 +15,10 @@ object Application extends Controller {
       case None => BadRequest("Nashorn script engine not found. Are you using JDK 8?")
       case Some(engine) =>
         engine.eval("var global = this;")
+
+        //Make sure that when backend rendering of JS uses console, it prints to SBT console
+        engine.eval("console = {log: print, warn: print, error: print};")
+
         engine.eval("var backendState = {};")
         engine.eval("backendState.title = 'List of posts';")
         engine.eval(s"backendState.posts = ${Json.stringify(Json.toJson(Blog.allPosts))};")
