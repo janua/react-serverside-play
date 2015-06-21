@@ -41,8 +41,8 @@ var BlogEditor = React.createClass({
             <div>
                 <p className="enterTitle">Enter Post Title:</p>
                 <form className="entryForm" action="addpost" method="post">
-                    <input name="title" id="title" type="field" onChange={this.onUpdate.bind(this)}></input>
-                    <button onClick={this.onClick.bind(this)}>Post</button>
+                    <input name="title" id="title" type="field" onChange={this.onUpdate}></input>
+                    <button onClick={this.onClick}>Post</button>
                 </form>
             </div>
         );
@@ -75,7 +75,7 @@ var Blog = React.createClass({
 
   render: function() {
     var postsHtml = _.map(this.state.posts, function(post) {
-      return (<BlogPost title={post.title}/>);
+      return (<BlogPost key={post.title} title={post.title}/>);
     });
 
     return (
