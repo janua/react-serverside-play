@@ -12,7 +12,7 @@ object Blog {
   private var posts: List[Post] = Nil
 
   def addPost(post: Post) = {
-    posts = posts :+ post
+    posts = post +: posts
     posts
   }
 
